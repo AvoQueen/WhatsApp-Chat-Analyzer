@@ -13,7 +13,7 @@
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.StartMenuController">
   <children>
-    <MenuBar styleClass="menubar" stylesheets="@../../styles/startmenu.css" VBox.vgrow="NEVER">
+    <MenuBar fx:id="menubar" styleClass="menubar" stylesheets="@startmenu.css" VBox.vgrow="NEVER">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
@@ -24,9 +24,12 @@
         </Menu>
             <Menu mnemonicParsing="false" text="Settings">
                <items>
-                  <MenuItem mnemonicParsing="false" text="Language" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Size" />
+                  <Menu mnemonicParsing="false" text="Language">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#changetoEnglish" text="English" />
+                        <MenuItem mnemonicParsing="false" onAction="#changetoGerman" text="German" />
+                    </items>
+                  </Menu>
                </items>
             </Menu>
         <Menu mnemonicParsing="false" text="Help">
@@ -36,14 +39,14 @@
         </Menu>
       </menus>
     </MenuBar>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="anchor" stylesheets="@../../styles/startmenu.css" VBox.vgrow="ALWAYS">
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" styleClass="anchor" stylesheets="@startmenu.css" VBox.vgrow="ALWAYS">
          <children>
             <ImageView fitHeight="94.0" fitWidth="459.0" layoutX="91.0" layoutY="56.0">
                <image>
-                  <Image url="@../../images/Logo.png" />
+                  <Image url="@../images/Logo.png" />
                </image>
             </ImageView>
-            <Button layoutX="241.0" layoutY="169.0" mnemonicParsing="false" onAction="#loadFileAndProceed" prefHeight="37.0" prefWidth="159.0" styleClass="myButton" stylesheets="@../../styles/startmenu.css" text="Start" textFill="WHITE">
+            <Button layoutX="241.0" layoutY="169.0" mnemonicParsing="false" onAction="#loadFileAndProceed" prefHeight="37.0" prefWidth="159.0" styleClass="myButton" stylesheets="@startmenu.css" text="Start" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="22.0" />
                </font>

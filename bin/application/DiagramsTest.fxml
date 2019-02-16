@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="application/startmenu.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ChartController">
+   <children>
+      <MenuBar fx:id="menubar" prefHeight="33.0" prefWidth="1280.0" styleClass="menubar" stylesheets="@startmenu.css">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#openNewFile" text="Open…" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#exitApplication" text="Quit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Settings">
+               <items>
+                  <Menu mnemonicParsing="false" text="Language">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#changetoEnglish" text="English" />
+                        <MenuItem mnemonicParsing="false" onAction="#changetoGerman" text="German" />
+                    </items>
+                  </Menu>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" text="Size" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <AnchorPane prefHeight="780.0" prefWidth="1280.0" stylesheets="@startmenu.css">
+         <children>
+            <PieChart fx:id="piechart" layoutX="130.0" layoutY="85.0" prefHeight="604.0" prefWidth="997.0" title="Share of Conversation" visible="false" />
+            <BarChart fx:id="barchart" layoutX="142.0" layoutY="85.0" prefHeight="604.0" prefWidth="997.0" title="Time-Message Diagram [Simple]" visible="false">
+              <xAxis>
+                <CategoryAxis label="Time" side="BOTTOM" fx:id="x" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="y" label="Messages" side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <ComboBox fx:id="combobox" layoutX="14.0" layoutY="26.0" onAction="#changeChart" onInputMethodTextChanged="#changeChart" prefHeight="25.0" prefWidth="231.0" promptText="Pick a Chart" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>
