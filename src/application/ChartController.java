@@ -23,6 +23,8 @@ import javafx.scene.control.TabPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import processing.WhatsAppStatistic;
+import settings.Language;
+import settings.LanguageType;
 
 public class ChartController implements Initializable {
 
@@ -157,70 +159,40 @@ public class ChartController implements Initializable {
 		barchart1.getData().clear();
 		barchart2.getData().clear();
 	}
-//
+	
 	@FXML
-	void changetoGerman()
-	{
-		Menu file = menubar.getMenus().get(0);
-		Menu settings = menubar.getMenus().get(1);
-		Menu help = menubar.getMenus().get(2);
-
-		file.setText("Datei");
-		file.getItems().get(0).setText("Öffne...");
-		file.getItems().get(2).setText("Verlassen");
-
-		settings.setText("Einstellungen");
-		settings.getItems().get(0).setText("Sprache");
-		((Menu) settings.getItems().get(0)).getItems().get(0).setText("Englisch");
-		((Menu) settings.getItems().get(0)).getItems().get(1).setText("Deutsch");
-		settings.getItems().get(2).setText("Größe");
-
-		help.setText("Hilfe");
-		help.getItems().get(0).setText("Über");
-		
-		tabpane.getTabs().get(0).setText("Kreisdiagramm");
-		piechart.setTitle("Gesprächsanteile");
-		
-		tabpane.getTabs().get(1).setText("Einfaches Balkendiagramm");
-		barchart1.setTitle("Zeit-Nachrichten Diagramm [Einfach]");
-		
-		tabpane.getTabs().get(2).setText("Fortgeschrittenes Balkendiagramm");
-		barchart2.setTitle("Zeit-Nachrichten Diagramm [Fortgeschritten]");
+	void reloadCharts() {
+		resetChartData();
+		reloadCurrentChart();
 	}
-//
+
+	private void changeLanguage(LanguageType type)
+	{	
+		final Language language = Main.getPreLoadedLanguage(type);
+		
+		language.updateMenuBar(menubar);
+		language.updateTabPane(tabpane);
+		
+		language.updateChart(piechart, "piechart");
+		language.updateChart(barchart1, "barchart1");
+		language.updateChart(barchart2, "barchart2");
+	}
+	
 	@FXML
-	void changetoEnglish()
+	void changeToGerman()
 	{
-//		Menu file = menubar.getMenus().get(0);
-//		Menu settings = menubar.getMenus().get(1);
-//		Menu help = menubar.getMenus().get(2);
-//
-//		file.setText("File");
-//		file.getItems().get(0).setText("Open...");
-//		file.getItems().get(2).setText("Quit");
-//
-//		settings.setText("Settings");
-//		settings.getItems().get(0).setText("Language");
-//		((Menu) settings.getItems().get(0)).getItems().get(0).setText("English");
-//		((Menu) settings.getItems().get(0)).getItems().get(1).setText("German");
-//		settings.getItems().get(2).setText("Size");
-//
-//		help.setText("Help");
-//		help.getItems().get(0).setText("About");
-//
-//		chartTitles = new String[] { 
-//				"Share of Conversation",
-//				"Time-Message Diagram [Simple]",
-//				"Time-Message Diagram [Advanced]" };
-//		
-//		chartIdentifier = new String[] { 
-//				"Pie-Chart",
-//				"Simple Bar-Chart",
-//				"Advanced Bar-Chart" };
-//		
-//		combobox.setItems(
-//				FXCollections.observableArrayList(chartIdentifier[1], chartIdentifier[2], chartIdentifier[0], "Statistics"));
-//		
-//		changeChart();
+		changeLanguage(LanguageType.GERMAN);
+	}
+	
+	@FXML
+	void changeToEnglish()
+	{
+		changeLanguage(LanguageType.ENGLISH);
+	}
+	
+	@FXML
+	void changeToFrench()
+	{
+		changeLanguage(LanguageType.FRENCH);
 	}
 }

@@ -54,7 +54,7 @@ public class StartMenuController implements Initializable {
 
 		Main.initWhatsAppFile(file);
 
-		Parent root = FXMLLoader.load(getClass().getResource("DiagramsTest.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("Diagrams.fxml"));
 		Scene scene = new Scene(root, 1280, 800);
 
 		stage.setScene(scene);

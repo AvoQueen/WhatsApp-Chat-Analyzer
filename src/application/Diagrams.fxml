@@ -4,12 +4,16 @@
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="application/startmenu.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ChartController">
@@ -19,6 +23,7 @@
             <Menu mnemonicParsing="false" text="File">
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#openNewFile" text="Open…" />
+                  <MenuItem mnemonicParsing="false" onAction="#reloadCharts" text="Reload" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem mnemonicParsing="false" onAction="#exitApplication" text="Quit" />
                </items>
@@ -27,8 +32,9 @@
                <items>
                   <Menu mnemonicParsing="false" text="Language">
                     <items>
-                      <MenuItem mnemonicParsing="false" onAction="#changetoEnglish" text="English" />
-                        <MenuItem mnemonicParsing="false" onAction="#changetoGerman" text="German" />
+                      <MenuItem mnemonicParsing="false" onAction="#changeToEnglish" text="English" />
+                        <MenuItem mnemonicParsing="false" onAction="#changeToGerman" text="German" />
+                        <MenuItem mnemonicParsing="false" onAction="#changeToFrench" text="French" />
                     </items>
                   </Menu>
                   <SeparatorMenuItem mnemonicParsing="false" />
@@ -42,20 +48,71 @@
             </Menu>
          </menus>
       </MenuBar>
-      <AnchorPane prefHeight="780.0" prefWidth="1280.0" stylesheets="@startmenu.css">
-         <children>
-            <AnchorPane layoutX="130.0" layoutY="85.0" prefHeight="604.0" prefWidth="997.0" />
-            <PieChart fx:id="piechart" layoutX="130.0" layoutY="85.0" prefHeight="604.0" prefWidth="997.0" title="Share of Conversation" visible="false" />
-            <BarChart fx:id="barchart" layoutX="142.0" layoutY="85.0" prefHeight="604.0" prefWidth="997.0" title="Time-Message Diagram [Simple]" visible="false">
-              <xAxis>
-                <CategoryAxis label="Time" side="BOTTOM" fx:id="x" />
-              </xAxis>
-              <yAxis>
-                <NumberAxis fx:id="y" label="Messages" side="LEFT" />
-              </yAxis>
-            </BarChart>
-            <ComboBox fx:id="combobox" layoutX="14.0" layoutY="26.0" onAction="#changeChart" onInputMethodTextChanged="#changeChart" prefHeight="25.0" prefWidth="231.0" promptText="Pick a Chart" />
-         </children>
-      </AnchorPane>
+      <TabPane fx:id="tabpane" prefHeight="770.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab onSelectionChanged="#loadPieChart" text="Pie Chart">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <PieChart fx:id="piechart" layoutX="134.0" layoutY="70.0" prefHeight="600.0" prefWidth="1000.0" title="Share Of Conversation" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+          <Tab onSelectionChanged="#loadSimpleBarChart" text="Bar Chart [1]">
+               <content>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <BarChart fx:id="barchart1" layoutX="140.0" layoutY="70.0" prefHeight="600.0" prefWidth="1000.0">
+                          <xAxis>
+                            <CategoryAxis label="Time" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis label="Messages" side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab onSelectionChanged="#loadAdvancedBarChart" text="Bar Chart [2]">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <BarChart fx:id="barchart2" layoutX="140.0" layoutY="70.0" prefHeight="600.0" prefWidth="1000.0">
+                          <xAxis>
+                            <CategoryAxis label="Messages" side="BOTTOM" />
+                          </xAxis>
+                          <yAxis>
+                            <NumberAxis side="LEFT" />
+                          </yAxis>
+                        </BarChart>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Statistics">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane layoutX="140.0" layoutY="70.0" prefHeight="600.0" prefWidth="1000.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+        </tabs>
+      </TabPane>
    </children>
 </VBox>
