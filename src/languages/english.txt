@@ -1,0 +1,16 @@
+file=File
+open=Open...
+close=Quit
+settings=Settings
+language=Language
+english=English
+german=German
+size=Size
+help=Help
+about=About
+piecharttab=Pie-Chart
+piechart=Share Of Conversation
+barcharttab1=Bar-Chart [1]
+barchart1=Time-Message Diagram [Simple]
+barcharttab2=Bar-Chart [2]
+barchart2=Time-Message Diagram [Advanced]

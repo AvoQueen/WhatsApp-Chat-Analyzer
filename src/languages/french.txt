@@ -1,0 +1,16 @@
+file=Baguette
+open=Baguette
+close=Baguette
+settings=Baguette
+language=Baguette
+english=Baguette
+german=Baguette
+size=Baguette
+help=Baguette
+about=Baguette
+piecharttab=Baguette
+piechart=Baguette
+barcharttab1=Baguette Baguette
+barchart1=Baguette-Baguette Baguette [Baguette]
+barcharttab2=Baguette Baguette
+barchart2=Baguette-Baguette Baguette [Baguette]

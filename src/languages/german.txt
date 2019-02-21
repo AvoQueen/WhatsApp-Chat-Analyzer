@@ -1,0 +1,19 @@
+file=Datei
+open=Öffne...
+close=Verlassen
+settings=Einstellungen
+language=Sprache
+english=Englisch
+german=Deutsch
+size=Größe
+help=Hilfe
+about=Über
+piecharttab=Kreisdiagramm
+piechart=Redeanteil
+barcharttab1=Einfaches Balkendiagramm
+barchart1=Zeit-Nachrichten Diagramm [Einfach]
+barcharttab2=Fortgeschrittenes Balkendiagramm
+barchart2=Zeit-Nachrichten Diagramm [Fortgeschritten]
+
+
+
